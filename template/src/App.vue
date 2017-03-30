@@ -1,72 +1,87 @@
 <template>
 
   <div id="app">
+    <!-- header start -->
+    <vux-XHeader
+      :title="headerOptions.title"
+      :left-options="headerOptions.left"
+      :right-options="headerOptions.right" />
+    <!-- header end -->
 
-    <ci-topbar
-      class="light-blue"
-      :data="navData"
-      :username="username"
-      :titlename="appname" />
+    <!-- container start -->
+    <div class="container">
+      <transition name="fade" mode="out-in">
+        <router-view />
+      </transition>
+    </div>
+    <!-- container end -->
 
-    <ci-container>
-      <ci-sidebar
-      class="light-blue"
-      :data="navData"
-      :titlename="appname" />
+    <!-- tabbar start -->
+    <vux-Tabbar>
+      <vux-TabbarItem
+        v-for="item of tabbarItems"
+        :key="index"
+        :selected="isTabbarSelected(item.link)"
+        :icon-class="item.icon"
+        :link="item.link">
+        <span slot="label">\{{ item.name }}</span>
+      </vux-TabbarItem>
+    </vux-Tabbar>
+    <!-- tabbar end -->
 
-      <ci-content>
-        <transition name="fade" mode="out-in">
-          <router-view />
-        </transition>
-      </ci-content>
-
-    </ci-container>
   </div>
 
 </template>
 
 <script>
 export default {
+
   name: 'app',
+
   computed: {
-    appname () {
-      return this.$t('nav.title')
+
+    headerOptions () {
+      return {
+        title: this.$t('nav.title'),
+        left: {
+          showBack: true,
+          backText: this.$t('nav.back')
+        },
+        right: {
+          showMore: true
+        }
+      }
     },
-    username () {
-      const user = this.$store.state.user.userInfo
-      return user ? user.nickname : this.$t('nav.user')
-    },
-    navData () {
+
+    tabbarItems () {
       return [
         {
-          title: this.$t('nav.home'),
-          name: 'index' // use vue router name
+          link: '/index',
+          name: this.$t('tab.index')
         },
         {
-          title: this.$t('nav.components'),
-          // icon: 'el-icon-message', // use icon class name
-          items: [
-            {
-              title: this.$t('nav.example'),
-              hash: '/example' // use vue router path
-            }
-          ]
-        },
-        {
-          title: this.$t('nav.noAccess'),
-          name: 'noAccess'
-        },
-        {
-          title: '404',
-          link: '/#/no.html' // use normal href
+          link: '/notFound',
+          name: '404'
         }
       ]
     }
+  },
+
+  methods: {
+
+    isTabbarSelected (link) {
+      return link === this.$route.path
+    }
+
   }
+
 }
 </script>
 
 <style lang="scss" scope>
+  body {
+    font-size: 0.25rem;
+  }
   .fade-enter-active, .fade-leave-active {
     transition: opacity .3s
   }
