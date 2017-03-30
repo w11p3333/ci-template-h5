@@ -1,24 +1,31 @@
 <template>
-  <div class="hello">
-    <img src="../assets/image/logo.png">
-    <h1>\{{ titleText }}</h1>
-    <el-button @click="changeLanguage">\{{ languageBtnText }}</el-button>
-    <el-button @click="changeTheme">\{{ themeBtnText }}</el-button>
-    <pre>\{{ help }}</pre>
-    <ul>
-      <li v-for="list of linkList">
-        <a :href="list.href" target="_blank">\{{ list.name }}</a>
-      </li>
-    </ul>
+  <div>
+    <vux-ButtonTab
+      class="language-tab"
+      v-model="tabIndex">
+      <vux-ButtonTabItem @on-item-click="changeLanguage">English</vux-ButtonTabItem>
+      <vux-ButtonTabItem @on-item-click="changeLanguage">中文</vux-ButtonTabItem>
+    </vux-ButtonTab>
+    <div class="hello">
+      <img src="../assets/image/logo.png">
+      <h1>\{{ titleText }}</h1>
+      <vux-XButton
+        type="primary"
+        :mini="true"
+        @click.native="getData">
+        \{{ $t('hello.network') }}
+      </vux-XButton>
+      <pre>\{{ help }}</pre>
+      <ul>
+        <li v-for="list of linkList">
+          <a :href="list.href" target="_blank">{{ list.name }}</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
-import {
-  addClass,
-  removeClass,
-  hasClass
-} from 'ci-components/utils/index'
 
 // import Vue from 'vue'
 
@@ -37,6 +44,8 @@ import {
 //   }
 // }
 
+import * as apis from 'src/apis'
+
 export default {
   name: 'hello',
 
@@ -54,6 +63,7 @@ export default {
   /** ***********************  local data  ************************* **/
   data () {
     return {
+      tabIndex: 0,
       help: 'write in src/components/Hello.vue and save',
       linkList: [
         { href: 'http://router.vuejs.org/', name: 'vue-router' },
@@ -71,22 +81,23 @@ export default {
     },
     languageBtnText () {
       return this.$t('hello.languageBtn')
-    },
-    themeBtnText () {
-      return this.$t('hello.themeBtn')
     }
   },
 
   /** ***********************  life ciycle  ************************* **/
 
   beforeCreate () {},
-  created () {}, // before dom create
+  created () {
+    this.tabIndex = this.$i18n.locale === 'en' ? 0 : 1
+  }, // before dom create
+
   mounted () {
     // everytime dom render over
     this.$nextTick(_ => {
      // document.getElementsById
     })
   }, // after dom created
+
   beforeUpdate () {},
   updated () {},
   activated () {},
@@ -98,31 +109,30 @@ export default {
   methods: {
 
     changeLanguage () {
-      this.$i18n.locale = this.$i18n.locale === 'zh' ? 'en' : 'zh'
+      this.$i18n.locale = this.tabIndex === 0 ? 'en' : 'zh'
     },
 
-    changeTheme () {
-      this.$nextTick(_ => {
-        const THEME_ARR = [
-          'light-blue',
-          'dark-blue',
-          'light-dark'
-        ]
-        const topbar = document.getElementsByClassName('ci-topbar')[0]
-        const sidebar = document.getElementsByClassName('ci-sidebar')[0]
-        for (let [index, item] of new Map(THEME_ARR.map((item, i) => [i, item]))) {
-          if (hasClass(topbar, item)) {
-            const n = index === 0 ? index : index - 1
-            THEME_ARR.splice(n, 1)
-            const num = Math.round(Math.random())
-            removeClass(topbar, item)
-            removeClass(sidebar, item)
-            addClass(topbar, THEME_ARR[num])
-            addClass(sidebar, THEME_ARR[num])
-            return
-          }
-        }
+    async getData () {
+      this.$vux.loading.show({
+        text: this.$t('loading.text')
       })
+      try {
+        await apis.fetchLogin({})
+      } catch ({ message }) {
+        this.$vux.alert.show({
+          title: message
+        })
+      } finally {
+        this.$vux.loading.hide()
+      }
+      // Another way
+      // this.$createApi(url, params)
+      // .then(res => {
+      // })
+      // .catch(error => {
+      // })
+      // also can use $http
+      // this.$http.post  || this.$http.get
     }
 
   },
@@ -135,13 +145,16 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
+.language-tab {
+  margin-top: 0.7rem;
+}
 .hello {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 1.5rem;
 }
 h1, h2 {
   font-weight: normal;
