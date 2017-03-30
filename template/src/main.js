@@ -5,13 +5,12 @@ import router from './router'
 import store from './store'
 // import i18n
 import i18n from './i18n'
+// import fastclick
+import fastClick from 'fastclick'
 // import components
 import components from './components'
 // import components framework
-import CIComponents from 'ci-components'
-// import css
-import 'element-ui/lib/theme-default/index.css'
-import 'ci-components/css/index.scss'
+import CIComponents from 'ci-components-h5'
 
 // remember to Vue.use() every module
 Vue.use(CIComponents)
@@ -20,6 +19,11 @@ Vue.use(CIComponents)
 components.map(component => {
   Vue.component(`ci-${component.name}`, component)
 })
+
+fastClick.attach(document.body)
+
+// rem
+document.getElementsByTagName('html')[0].style.fontSize = (window.innerWidth / 375 * 50) + 'px'
 
 // mounted vue to App component
 /* eslint-disable no-new */
