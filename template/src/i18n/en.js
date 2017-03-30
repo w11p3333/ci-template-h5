@@ -1,17 +1,16 @@
 export default {
   hello: {
-    title: 'welcome to your vue.js app',
-    languageBtn: 'change language',
-    themeBtn: 'change theme'
+    title: 'Welcome To Your vue.js App',
+    network: 'network'
   },
   nav: {
-    title: 'dashboard',
-    home: 'home',
-    {{#example}}
-    components: 'components',
-    example: 'example',
-    {{/example}}
-    noAccess: 'noAccess',
-    user: 'user'
+    title: 'Navbar',
+    back: 'back'
+  },
+  tab: {
+    index: 'Index'
+  },
+  loading: {
+    text: 'loading...'
   }
 }

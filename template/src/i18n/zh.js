@@ -1,17 +1,16 @@
 export default {
   hello: {
     title: '欢迎来到你的vue.js app',
-    languageBtn: '切换语言',
-    themeBtn: '切换主题'
+    network: '网络请求'
   },
   nav: {
-    title: '我的控制台',
-    home: '主页',
-    {{#example}}
-    components: '组件',
-    example: '实例',
-    {{/example}}
-    noAccess: '无权限',
-    user: '用户'
+    title: '导航栏',
+    back: '返回'
+  },
+  tab: {
+    index: '首页'
+  },
+  loading: {
+    text: '正在拼命加载中...'
   }
 }
