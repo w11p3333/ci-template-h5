@@ -5,13 +5,18 @@
   "description": "A full-featured Webpack setup with hot-reload, lint-on-save, unit testing & css extraction.",
   "scripts": {
     "docs": "cd docs && gitbook serve",
-    "docs:deploy": "bash ./deploy-docs.sh"
+    "docs:deploy": "bash ./deploy-docs.sh",
+    "lint": "cd template && npm run lint"
   },
+  "pre-commit": [
+  "lint"
+  ],
   "devDependencies": {
     "vue-cli": "^2.8.1"
   },
   "dependencies": {
     "node-sass": "^4.5.0",
+    "pre-commit": "^1.2.2",
     "vue": "^2.2.4",
     "vue-i18n": "^6.0.0-beta.1"
   }
