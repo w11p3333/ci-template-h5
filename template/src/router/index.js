@@ -8,6 +8,7 @@ import {
 // import processbar
 import processbar from 'nprogress'
 import 'nprogress/nprogress.css'
+processbar.configure({ showSpinner: false })
 // import views
 import index from 'views/index'
 // async load
