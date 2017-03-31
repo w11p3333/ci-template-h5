@@ -2,7 +2,7 @@
 
   <div id="app">
     <!-- header start -->
-    <vux-XHeader
+    <XHeader
       :title="headerOptions.title"
       :left-options="headerOptions.left"
       :right-options="headerOptions.right" />
@@ -17,28 +17,61 @@
     <!-- container end -->
 
     <!-- tabbar start -->
-    <vux-Tabbar>
-      <vux-TabbarItem
-        v-for="item of tabbarItems"
+    <Tabbar>
+      <TabbarItem
+        v-for="(item, index) of tabbarItems"
         :key="index"
         :selected="isTabbarSelected(item.link)"
         :icon-class="item.icon"
         :link="item.link">
         <span slot="label">\{{ item.name }}</span>
-      </vux-TabbarItem>
-    </vux-Tabbar>
+      </TabbarItem>
+    </Tabbar>
     <!-- tabbar end -->
+
+    <!-- loading -->
+    <div v-transfer-dom>
+      <Loading v-model="isLoading" :text="$t('loading.text')" />
+    </div>
 
   </div>
 
 </template>
 
 <script>
+
+import {
+  XHeader,
+  Tabbar,
+  TabbarItem,
+  Loading,
+  TransferDomDirective as TransferDom
+} from 'vux'
+
+import {
+  mapState
+} from 'vuex'
+
 export default {
 
   name: 'app',
 
+  directives: {
+    TransferDom
+  },
+
+  components: {
+    XHeader,
+    Tabbar,
+    TabbarItem,
+    Loading
+  },
+
   computed: {
+
+    ...mapState({
+      isLoading: state => state.isLoading
+    }),
 
     headerOptions () {
       return {
@@ -79,13 +112,5 @@ export default {
 </script>
 
 <style lang="scss" scope>
-  body {
-    font-size: 0.25rem;
-  }
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity .3s
-  }
-  .fade-enter, .fade-leave-active {
-    opacity: 0
-  }
+  @import 'src/assets/css/index.scss'
 </style>

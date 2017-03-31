@@ -1,0 +1,29 @@
+/** 处理安卓下适配问题 */
+* {
+  max-height:1000000px;
+}
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-size: 14px;
+  .container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    .content {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+    }
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .3s
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0
+  }
+}

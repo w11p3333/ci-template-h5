@@ -1,7 +1,23 @@
 <template>
-  <ci-notFound />
+  <ci-not-found class="not-found" />
 </template>
 
 <script>
-export default {}
+  import {
+    CiNotFound
+  } from 'ci-components-h5'
+  export default {
+
+    components: {
+      CiNotFound
+    }
+
+  }
 </script>
+
+<style lang="scss" scope>
+  .not-found {
+    align-self: center;
+  }
+
+</style>

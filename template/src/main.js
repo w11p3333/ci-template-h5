@@ -3,23 +3,31 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+// import components
+import components from './components'
 // import i18n
 import i18n from './i18n'
 // import fastclick
 import fastClick from 'fastclick'
-// import components
-import components from './components'
-// import components framework
-import CIComponents from 'ci-components-h5'
+// import what you need from vux
+import {
+  LoadingPlugin,
+  WechatPlugin
+} from 'vux'
+// import css
+import 'vux/src/styles/reset.less'
+import 'ci-components-h5/css/index.scss'
 
-// remember to Vue.use() every module
-Vue.use(CIComponents)
+// use module
+Vue.use(LoadingPlugin)
+Vue.use(WechatPlugin)
 
 // register global components  make hello => ci-hello
 components.map(component => {
-  Vue.component(`ci-${component.name}`, component)
+  Vue.component(component.name, component)
 })
 
+// fastClick
 fastClick.attach(document.body)
 
 // rem

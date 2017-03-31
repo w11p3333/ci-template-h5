@@ -5,8 +5,7 @@
 export const API_TOKEN = '41rakznlmnggpw9ohu88b3hz13hd1scy'
 
 /** global */
-export const START_FETCH = 'START_FETCH'
-export const END_FETCH = 'END_FETCH'
+export const SET_LOADING_STATUS = 'SET_LOADING_STATUS'
 
 /** user */
 export const LOGIN = 'LOGIN'
