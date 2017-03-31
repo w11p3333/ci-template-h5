@@ -3,9 +3,11 @@
   <div id="app" class="container">
     <!-- header start -->
     <XHeader
-      :title="headerOptions.title"
+      :transition="headerTransition"
+      :title="headerTitle"
       :left-options="headerOptions.left"
-      :right-options="headerOptions.right" />
+      :right-options="headerOptions.right"
+      @on-click-title="scrollToTop" />
     <!-- header end -->
 
     <!-- container start -->
@@ -16,8 +18,8 @@
         <ButtonTabItem @on-item-click="changeLanguage">English</ButtonTabItem>
         <ButtonTabItem @on-item-click="changeLanguage">中文</ButtonTabItem>
       </ButtonTab>
-      <transition name="fade" mode="out-in">
-        <router-view />
+      <transition :name="'pop-' + (direction === 'forward' ? 'in' : 'out')">
+        <router-view class="router-view" />
       </transition>
     </div>
     <!-- container end -->
@@ -86,8 +88,17 @@ export default {
   computed: {
 
     ...mapState({
-      isLoading: state => state.isLoading
+      isLoading: state => state.isLoading,
+      direction: state => state.direction
     }),
+
+    headerTransition () {
+      return this.direction === 'forward' ? 'header-fade-in-right' : 'header-fade-in-left'
+    },
+
+    headerTitle () {
+      for (const item of this.tabbarItems) if (this.isTabbarSelected(item.link)) return item.name
+    },
 
     headerOptions () {
       return {
@@ -105,11 +116,11 @@ export default {
     tabbarItems () {
       return [
         {
-          link: '/index',
+          link: { name: 'index', query: this.$route.query },
           name: this.$t('tab.index')
         },
         {
-          link: '/notFound',
+          link: { path: '/notFound', query: this.$route.query },
           name: '404'
         }
       ]
@@ -118,12 +129,16 @@ export default {
 
   methods: {
 
+    scrollToTop () {
+      window.scroll(0, 0)
+    },
+
     changeLanguage () {
       this.$i18n.locale = this.tabIndex === 0 ? 'en' : 'zh'
     },
 
-    isTabbarSelected (link) {
-      return link === this.$route.path
+    isTabbarSelected ({ link, name }) {
+      return link === this.$route.path || name === this.$route.name
     }
 
   }
