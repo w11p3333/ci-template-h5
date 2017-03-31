@@ -1,3 +1,5 @@
+@import './router.scss';
+
 /** 处理安卓下适配问题 */
 * {
   max-height:1000000px;
@@ -12,11 +14,5 @@ body {
   .container {
     min-height: 100vh;
     overflow: hidden;
-  }
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity .3s
-  }
-  .fade-enter, .fade-leave-active {
-    opacity: 0
   }
 }
