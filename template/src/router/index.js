@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from 'src/store'
+import {
+  SET_LOADING_STATUS
+} from 'src/consts'
 // import processbar
 import processbar from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -8,7 +11,6 @@ import 'nprogress/nprogress.css'
 import index from 'views/index'
 // async load
 const notFound = resolve => import('views/notFound').then(resolve)
-const noAccess = resolve => import('views/noAccess').then(resolve)
 
 Vue.use(Router)
 
@@ -25,11 +27,6 @@ const router = new Router({
     {
       path: '/',
       redirect: '/index'
-    },
-    {
-      path: '/noAccess',
-      name: 'noAccess',
-      component: noAccess
     },
     {
       path: '*',

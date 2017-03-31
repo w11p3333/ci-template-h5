@@ -77,7 +77,9 @@ module.exports = vuxLoader.merge(baseConfig, {
   options: {},
   plugins: [
     {
-      name: 'vux-ui',
+      name: 'vux-ui'
+    },
+    {
       name: 'inline-manifest'
     }
   ]

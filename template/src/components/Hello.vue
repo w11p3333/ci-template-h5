@@ -1,27 +1,19 @@
 <template>
-  <div>
-    <ButtonTab
-      class="language-tab"
-      v-model="tabIndex">
-      <ButtonTabItem @on-item-click="changeLanguage">English</ButtonTabItem>
-      <ButtonTabItem @on-item-click="changeLanguage">中文</ButtonTabItem>
-    </ButtonTab>
-    <div class="hello">
-      <img src="../assets/image/logo.png">
-      <h1>\{{ titleText }}</h1>
-      <XButton
-        type="primary"
-        :mini="true"
-        @click.native="getData">
-        \{{ $t('hello.network') }}
-      </XButton>
-      <pre>\{{ help }}</pre>
-      <ul>
-        <li v-for="list of linkList">
-          <a :href="list.href" target="_blank">\{{ list.name }}</a>
-        </li>
-      </ul>
-    </div>
+  <div class="hello">
+    <img class="logo" src="../assets/image/logo.png">
+    <h1>\{{ titleText }}</h1>
+    <XButton
+      type="primary"
+      :mini="true"
+      @click.native="getData">
+      \{{ $t('hello.network') }}
+    </XButton>
+    <pre>\{{ help }}</pre>
+    <ul>
+      <li v-for="list of linkList">
+        <a :href="list.href" target="_blank">\{{ list.name }}</a>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -117,10 +109,6 @@ export default {
   /** ***********************  functions  ************************* **/
   methods: {
 
-    changeLanguage () {
-      this.$i18n.locale = this.tabIndex === 0 ? 'en' : 'zh'
-    },
-
     async getData () {
       this.$vux.loading.show({
         text: this.$t('loading.text')
@@ -155,16 +143,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.language-tab {
-  margin-top: .2rem;
-}
+
 .hello {
-  font-size: 14px;
+  margin-top: .5rem;
+  font-size: .2rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: .55rem;
+  // margin-top: .55rem;
   .logo {
     min-width: 150px;
     min-height: 150px;

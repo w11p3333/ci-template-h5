@@ -1,6 +1,6 @@
 <template>
 
-  <div id="app">
+  <div id="app" class="container">
     <!-- header start -->
     <XHeader
       :title="headerOptions.title"
@@ -9,7 +9,13 @@
     <!-- header end -->
 
     <!-- container start -->
-    <div class="container">
+    <div class="content">
+      <ButtonTab
+        class="language-tab"
+        v-model="tabIndex">
+        <ButtonTabItem @on-item-click="changeLanguage">English</ButtonTabItem>
+        <ButtonTabItem @on-item-click="changeLanguage">中文</ButtonTabItem>
+      </ButtonTab>
       <transition name="fade" mode="out-in">
         <router-view />
       </transition>
@@ -41,6 +47,8 @@
 <script>
 
 import {
+  ButtonTab,
+  ButtonTabItem,
   XHeader,
   Tabbar,
   TabbarItem,
@@ -61,10 +69,18 @@ export default {
   },
 
   components: {
+    ButtonTab,
+    ButtonTabItem,
     XHeader,
     Tabbar,
     TabbarItem,
     Loading
+  },
+
+  data () {
+    return {
+      tabIndex: 0
+    }
   },
 
   computed: {
@@ -102,6 +118,10 @@ export default {
 
   methods: {
 
+    changeLanguage () {
+      this.$i18n.locale = this.tabIndex === 0 ? 'en' : 'zh'
+    },
+
     isTabbarSelected (link) {
       return link === this.$route.path
     }
@@ -112,5 +132,9 @@ export default {
 </script>
 
 <style lang="scss" scope>
-  @import 'src/assets/css/index.scss'
+  @import 'src/assets/css/index.scss';
+
+  .language-tab {
+    margin-top: .2rem;
+  }
 </style>
