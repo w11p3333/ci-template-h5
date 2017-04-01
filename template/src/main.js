@@ -12,6 +12,7 @@ import fastClick from 'fastclick'
 // import what you need from vux
 import {
   LoadingPlugin,
+  AlertPlugin,
   WechatPlugin
 } from 'vux'
 // import css
@@ -20,6 +21,7 @@ import 'ci-components-h5/css/index.scss'
 
 // use module
 Vue.use(LoadingPlugin)
+Vue.use(AlertPlugin)
 Vue.use(WechatPlugin)
 
 // register global components  make hello => ci-hello
