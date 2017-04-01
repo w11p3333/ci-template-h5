@@ -33,7 +33,8 @@ components.map(component => {
 fastClick.attach(document.body)
 
 // rem
-document.getElementsByTagName('html')[0].style.fontSize = (window.innerWidth / 375 * 50) + 'px'
+const deviceWidth = 750
+document.getElementsByTagName('html')[0].style.fontSize = (window.innerWidth / deviceWidth * 50) + 'px'
 
 // mounted vue to App component
 /* eslint-disable no-new */

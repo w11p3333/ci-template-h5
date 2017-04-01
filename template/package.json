@@ -15,7 +15,7 @@
   "dependencies": {
     "axios": "^0.15.3",
     "babel-preset-stage-3": "^6.22.0",
-    "ci-components-h5": "^0.0.3",
+    "ci-components-h5": "^0.0.4",
     "ci-network": "^0.0.8",
     "fastclick": "^1.0.6",
     "less-loader": "^4.0.2",
