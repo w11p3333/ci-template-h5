@@ -17,7 +17,7 @@
 
 <style lang="scss" scope>
   .not-found {
-    align-self: center;
+    margin-top: 1.2rem;
   }
 
 </style>
