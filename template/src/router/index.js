@@ -43,24 +43,26 @@ history.clear()
 let historyCount = history.getItem('count') * 1 || 0
 history.setItem('/', 0)
 
-// everytime before router
-router.beforeEach(async (to, from, next) => {
-  store.commit(SET_LOADING_STATUS, true)
+const setDirection = (to, from) => {
   const toIndex = history.getItem(to.path)
   const fromIndex = history.getItem(from.path)
-
   if (toIndex) {
-    if (!fromIndex || parseInt(toIndex, 10) > parseInt(fromIndex, 10) || (toIndex === '0' && fromIndex === '0')) {
-      store.commit(SET_DIRECTION, 'forward')
-    } else {
-      store.commit(SET_DIRECTION, 'reverse')
-    }
+    if (!fromIndex || parseInt(toIndex, 10) > parseInt(fromIndex, 10) || (toIndex === '0' && fromIndex === '0')) store.commit(SET_DIRECTION, 'forward')
+    else store.commit(SET_DIRECTION, 'reverse')
   } else {
     ++historyCount
     history.setItem('count', historyCount)
     to.path !== '/' && history.setItem(to.path, historyCount)
     store.commit(SET_DIRECTION, 'forward')
   }
+}
+
+// everytime before router
+router.beforeEach(async (to, from, next) => {
+  store.commit(SET_LOADING_STATUS, true)
+  // about animation direction
+  setDirection(to, from)
+  // scroll to top
   window.scroll(0, 0)
   if (to.path === from.path) return // when you change route in this function, it will invoker twice
   processbar.start() // start process
