@@ -1,6 +1,6 @@
 <template>
 
-  <div id="app" class="container">
+  <div id="app" class="ci-container">
     <!-- header start -->
     <XHeader
       :transition="headerTransition"
@@ -11,15 +11,15 @@
     <!-- header end -->
 
     <!-- container start -->
-    <div class="content">
+    <div class="ci-container__content">
       <ButtonTab
-        class="language-tab"
+        class="ci-container__lanuage-tab"
         v-model="tabIndex">
         <ButtonTabItem @on-item-click="changeLanguage">English</ButtonTabItem>
         <ButtonTabItem @on-item-click="changeLanguage">中文</ButtonTabItem>
       </ButtonTab>
       <transition :name="'pop-' + (direction === 'forward' ? 'in' : 'out')">
-        <router-view class="router-view" />
+        <router-view class="ci-container__router-view" />
       </transition>
     </div>
     <!-- container end -->
@@ -149,7 +149,7 @@ export default {
 <style lang="scss" scope>
   @import 'src/assets/css/index.scss';
 
-  .language-tab {
+  .ci-container__lanuage-tab {
     margin-top: .2rem;
   }
 </style>

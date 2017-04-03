@@ -1,6 +1,6 @@
 <template>
-  <div class="hello">
-    <img class="logo" src="../assets/image/logo.png">
+  <div class="ci-hello">
+    <img class="ci-hello__logo" src="../assets/image/logo.png">
     <h1>\{{ titleText }}</h1>
     <XButton
       type="primary"
@@ -144,7 +144,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 
-.hello {
+.ci-hello {
   margin-top: .5rem;
   font-size: .2rem;
   -webkit-font-smoothing: antialiased;
@@ -152,7 +152,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   // margin-top: .55rem;
-  .logo {
+  &__logo {
     min-width: 150px;
     min-height: 150px;
     width: .8rem;

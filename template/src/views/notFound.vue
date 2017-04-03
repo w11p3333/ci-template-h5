@@ -17,7 +17,7 @@
 
 <style lang="scss" scope>
   .not-found {
-    margin-top: 1.2rem;
+    margin-top: 1.2rem
   }
 
 </style>
