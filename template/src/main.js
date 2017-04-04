@@ -36,6 +36,11 @@ fastClick.attach(document.body)
 const deviceWidth = 750
 document.getElementsByTagName('html')[0].style.fontSize = (window.innerWidth / deviceWidth * 100) + 'px'
 
+// register service worker
+if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+  navigator.serviceWorker.register('service-worker.js')
+}
+
 // mounted vue to App component
 /* eslint-disable no-new */
 new Vue({
