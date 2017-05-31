@@ -6,7 +6,6 @@
   <img src="https://img.shields.io/github/stars/w11p3333/ci-template-h5.svg?style=social&label=Star" alt="Build Status">
   <img src="https://img.shields.io/packagist/l/doctrine/orm.svg" alt="License" />
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="Welcome PR" />
-  <br>
 </p>
 
 # ci-template-h5
