@@ -1,22 +1,22 @@
-# ci-template
+# ci-template-h5
 
-> a vue2.0 template based on IDG [repo](https://github.com/w11p3333/ci-template)
+> a vue2.0 C-Side template based on IDG [repo](https://github.com/w11p3333/ci-template)
 
-## lanuage
+## Lanuage
 [Chinese](./README_zh.md)
 
-## preview
+## Preview
 
 [demo](https://w11p3333.github.io/ci-template-h5/example/)
 
-## before
+## Before
 **you need know**
 - [npm](https://www.npmjs.com/)
 - [webpack](http://webpackdoc.com/)
 -  [vue](https://cn.vuejs.org/)
 -  [vue-router](https://router.vuejs.org/zh-cn/)
 -  [vuex](https://vuex.vuejs.org/zh-cn/)
--  [element-ui](http://element.eleme.io/#/zh-CN)
+-  [vux](https://vux.li/)
 -  [scss](http://sass-lang.com/)
 
 ## Usage
@@ -61,7 +61,7 @@ $ npm run dev
 - 2. add apis in `src/apis/index.js`
 - 3. add store in 
      `src/store/...`
-- 4. add router about view in `src/router/index.js`, add your router path in `sidebar` or `topbar` in `src/App.vue` 
+- 4. add router about view in `src/router/index.js`
 
 
 ## What's Script Included

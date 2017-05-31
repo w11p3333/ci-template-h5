@@ -1,8 +1,9 @@
-# ci-template
+# ci-template-h5
 
-> 基于vue2.0的中台B端模板 [项目地址](https://github.com/w11p3333/ci-template)
+> 基于vue2.0的中台C端模板 [项目地址](https://github.com/w11p3333/ci-template)
 
 ## 语言
+
 - [English](./README.md)
 
 ## 预览
@@ -16,7 +17,7 @@
 -  [vue](https://cn.vuejs.org/)
 -  [vue-router](https://router.vuejs.org/zh-cn/)
 -  [vuex](https://vuex.vuejs.org/zh-cn/)
--  [element-ui](http://element.eleme.io/#/zh-CN)
+-  [vux](http://element.eleme.io/#/zh-CN)
 -  [scss](http://sass-lang.com/)
 
 ## 使用
@@ -57,7 +58,7 @@ $ npm run dev
 - 1. 在`src/components/`中添加组件,  在`src/views/`中添加页面
 - 2. 在`src/apis/index.js`中添加接口
 - 3. 在`src/store/...`中添加vuex相关代码
-- 4. 在`src/router/index.js`中添加路由, 在`src/App.vue`中添加`sidebar` 和 `topbar`配置
+- 4. 在`src/router/index.js`中添加路由
 
 ## npm script
 
