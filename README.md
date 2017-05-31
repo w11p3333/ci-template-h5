@@ -5,6 +5,10 @@
 ## lanuage
 [Chinese](./README_zh.md)
 
+## preview
+
+[demo](https://w11p3333.github.io/ci-template-h5/example/)
+
 ## before
 **you need know**
 - [npm](https://www.npmjs.com/)
