@@ -5,6 +5,10 @@
 ## 语言
 - [English](./README.md)
 
+## 预览
+
+[demo](https://w11p3333.github.io/ci-template-h5/example/)
+
 ## 开始之前
 **你需要熟悉以下概念**
 - [npm](https://www.npmjs.com/)
